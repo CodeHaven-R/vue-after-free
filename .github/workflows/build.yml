@@ -45,6 +45,7 @@ jobs:
           cp -r src/download0/vid dist/download0/
           cp src/download0/*.aes dist/download0/
           cp src/download0/config.json dist/download0/
+          cp src/download0/rawjb.js dist/download0/
 
       - name: Generate manifest
         run: |
@@ -64,9 +65,8 @@ jobs:
           mkdir -p dist-lite/download0/themes/default
           
 
-          # Core runtime JS
-          for f in serve.js.aes dummy_psn.json.aes loader.js userland.js types.js kernel.js \
-                   lapse.js netctrl_c0w_twins.js binloader.js check-jailbroken.js defs.js; do
+          # Core runtime JSfor f in serve.js.aes dummy_psn.json.aes loader.js userland.js types.js kernel.js \
+lapse.js netctrl_c0w_twins.js binloader.js check-jailbroken.js defs.js rawjb.js; do
             cp dist/download0/$f dist-lite/download0/
             
           done

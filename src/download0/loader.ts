@@ -110,7 +110,10 @@ if (!is_jailbroken) {
 
   let use_lapse = false
 
-  if (jb_behavior === 1) {
+  if (jb_behavior === 3) {
+    log('JB Behavior: RAWJB (forced)')
+    include('rawjb.js')
+  } else if (jb_behavior === 1) {
     log('JB Behavior: NetControl (forced)')
     include('netctrl_c0w_twins.js')
   } else if (jb_behavior === 2) {
@@ -124,6 +127,12 @@ if (!is_jailbroken) {
       lapse()
     } else if (compare_version(FW_VERSION, '12.50') >= 0 && compare_version(FW_VERSION, '13.00') <= 0) {
       include('netctrl_c0w_twins.js')
+    } else if (compare_version(FW_VERSION, '13.00') > 0) {
+      // RAWJB: 663 kernel chain for 13.02/13.04/13.50/13.52. Self-contained:
+      // firmware gate, kernel patch and PS4-HEN payload are embedded in the
+      // bundle; it auto-runs on include().
+      log('JB Behavior: RAWJB (663 chain, 13.02+)')
+      include('rawjb.js')
     }
   }
 
